@@ -121,7 +121,7 @@ process fgbio_setmateinformation{
 
    memory "32G"
 
-   publishDir path: {params.save_intermediate_output ? params.output : null}, overwrite: true
+   publishDir path: params.output, enabled: params.save_intermediate_output, overwrite: true
 
    script:
    """
@@ -146,7 +146,7 @@ process fgbio_group_umi {
 
    memory "32G"
 
-   publishDir path: {params.save_intermediate_output ? params.output : null}, overwrite: true
+   publishDir path: params.output, enabled: params.save_intermediate_output, overwrite: true
 
    script:
    """
@@ -177,7 +177,7 @@ process fgbio_callconsensus{
 
    memory "32G"
 
-   publishDir path: {params.save_intermediate_output ? params.output : null}, overwrite: true
+   publishDir path: params.output, enabled: params.save_intermediate_output, overwrite: true
 
    script:
    """
@@ -210,7 +210,7 @@ process fgbio_filterconsensus{
 
    memory "32G"
 
-   publishDir path: {params.save_intermediate_output ? params.output : null}, overwrite: true
+   publishDir path: params.output, enabled: params.save_intermediate_output, overwrite: true
 
    script:
    """
@@ -238,7 +238,7 @@ process sort_filter_bam {
    output:
     tuple sample_id, "${sample_id}.sorted_consensus.bam" into (sorted_consensus_ch, sorted_consensus_realignment_ch)
     
-   publishDir path: {params.save_intermediate_output ? params.output : null}, overwrite: true
+   publishDir path: params.output, enabled: params.save_intermediate_output, overwrite: true
 
    script:
    """
